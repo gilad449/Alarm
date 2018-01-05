@@ -41,20 +41,17 @@ public class login_activity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                // App code
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 Log.i("addddmatttttttai", "gggggggggggggreaaaaaaaaaat");
             }
 
             @Override
             public void onCancel() {
-                // App code
                 Log.i("addddmatttttttai", "gggggggggggggreaaaaaaaaaat");
             }
 
             @Override
             public void onError(FacebookException exception) {
-                // App code
                 Log.i("addddmatttttttai", "gggggggggggggreaaaaaaaaaat");
             }
         });
@@ -68,7 +65,17 @@ public class login_activity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         Log.i("addddmatttttttai", "la");
         status.setText("lo");
+        checkStatus();
 
+    }
+    private void checkStatus()
+    {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null)
+        {
+            Log.i("addddmatttttttai", "gggggggggggggreaaaaaaaaaat");
+            finish();
+        }
     }
     public void handleFacebookAccessToken(AccessToken token) {
         Log.d("bluw", "handleFacebookAccessToken:" + token);
@@ -82,14 +89,12 @@ public class login_activity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Awesome", "signInWithCredential:success");
                             toastIt("Successfuly signed in");
-                            FirebaseUser user = mAuth.getCurrentUser();
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             toastIt("The sign in failed");
                             Log.w("regret", "signInWithCredential:failure", task.getException());
                         }
-
                     }
                 });
     }
