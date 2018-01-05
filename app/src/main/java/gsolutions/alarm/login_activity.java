@@ -24,7 +24,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class login_activity extends AppCompatActivity {
     public FirebaseAuth mAuth;
-    private TextView status;
     public CallbackManager callbackManager;
     public LoginButton loginButton;
     @Override
@@ -33,7 +32,6 @@ public class login_activity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         // Auth section
         mAuth = FirebaseAuth.getInstance();
-        status =  (TextView) findViewById(R.id.status);
         callbackManager = CallbackManager.Factory.create();
         System.out.println("was here");
         loginButton = (LoginButton) findViewById(R.id.login_button);
@@ -64,7 +62,6 @@ public class login_activity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         Log.i("addddmatttttttai", "la");
-        status.setText("lo");
         checkStatus();
 
     }

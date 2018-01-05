@@ -57,12 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         // Let's take a look at Toast and Log in action
         // TODO: admati
-        mAuth = FirebaseAuth.getInstance();
         button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(this);
         userInfo = (TextView) findViewById(R.id.userInfo);
-        String name = mAuth.getCurrentUser().getDisplayName();
-        userInfo.setText( name  + "  שלום");
         mp = null;
         checkConnection();
         checkStatus();
@@ -70,12 +67,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void checkStatus()
     {
+        mAuth = FirebaseAuth.getInstance();
         Intent intent = new Intent(this, login_activity.class);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null)
         {
             Log.i("addddmatttttttai", "gggggggggggggreaaaaaaaaaat");
             startActivity(intent);
+        }
+        else
+        {
+            String name = mAuth.getCurrentUser().getDisplayName();
+            userInfo.setText( name  + "  שלום");
         }
     }
     @Override
