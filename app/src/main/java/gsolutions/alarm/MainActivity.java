@@ -39,6 +39,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -80,6 +83,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String name = mAuth.getCurrentUser().getDisplayName();
             userInfo.setText( name  + "  שלום");
         }
+    }
+    public String checkUserExists()
+    {
+
+    }
+    public void createUser(user user)
+    {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersRef = database.getReference("/users").push();
+        usersRef.setValue(user);
     }
     @Override
     public void onStart()
