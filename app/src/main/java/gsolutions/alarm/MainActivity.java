@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         checkConnection();
         checkStatus();
         Log.i("info", "Done creating the app");
+        group.createGroup("pickhood");
     }
     private void checkStatus()
     {
@@ -81,19 +82,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
         {
             String name = mAuth.getCurrentUser().getDisplayName();
+            String uid = mAuth.getCurrentUser().getUid();
+            user user = new user(name, "None", uid);
+            user.createUser(user, uid);
             userInfo.setText( name  + "  שלום");
         }
     }
-    public String checkUserExists()
-    {
 
-    }
-    public void createUser(user user)
-    {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference usersRef = database.getReference("/users").push();
-        usersRef.setValue(user);
-    }
     @Override
     public void onStart()
     {
