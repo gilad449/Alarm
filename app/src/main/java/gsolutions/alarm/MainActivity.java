@@ -83,12 +83,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             String name = mAuth.getCurrentUser().getDisplayName();
             String uid = mAuth.getCurrentUser().getUid();
-            user user = new user(name, "None", uid);
-            user.createUser(user, uid);
-            userInfo.setText( name  + "  שלום");
+            user.checkExistence(uid, name);
+
+            String group = "blaaaaaaa";
+            user.setUserGroup(uid, group);
+            user.getUserGroup(uid);
+            userInfo.setText(group1 );
         }
     }
-
+    public static String group1;
     @Override
     public void onStart()
     {
